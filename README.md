@@ -37,3 +37,7 @@ The kit is not built yet. Until it ships, treat this as a handbook.
 
 - **Installable and version-pinned, not a scaffold you fork.** A maintained plugin you pin to beats another stale generator that drifts and locks you to one vendor.
 - **Pattern-only.** Ideas drawn from public, proven sources; no code copied from proprietary projects.
+
+## License
+
+Apache-2.0 — see [`LICENSE`](LICENSE). Matches the ecosystem this builds on, so adopt, fork, and contribute back freely.
