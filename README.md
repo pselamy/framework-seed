@@ -1,54 +1,121 @@
-# Framework Seed — public orchestration + knowledge-management methodology
+# Framework Seed
 
-> The privacy-scrubbed, generalized ESSENCE of an agent-orchestration + knowledge-management discipline — distilled to be published as a public, thought-leadership repo + Claude Code plugin. It is **NOT** any private fleet. No internal org/agent/product names, no infrastructure specifics, no billing/subscription model.
+> A discipline layer for autonomous engineering agents: proof before done, durable knowledge, and tooling hooks that make reliable behavior the default.
 
-## What this is
+Framework Seed is not another agent scaffold. It is the operating method behind agents that can work for longer than a chat window without drifting, forgetting, or claiming victory too early.
 
-A small number of agents (or one) doing real engineering work need three things to stay trustworthy at scale:
+The core idea is simple:
 
-1. **A discipline that makes "done" mean done** — evidence at the real artifact, not a marked checkbox. *(This is the differentiating core. Lead with it.)*
-2. **Knowledge that compounds instead of siloing** — one fact, one file, one index; capture once, route to the right home.
-3. **Changes that are reproducible and reversible** — declarative infrastructure, runtime knobs over restarts, every incident becomes a permanent guard.
+**An agent fleet does not become trustworthy by adding more tools. It becomes trustworthy when the harness forces good engineering behavior.**
 
-Most "agent framework" content sells the *plumbing* (routing, tools, memory stores). The scarce, valuable thing is the **discipline layer** — the rules and the *enforcement hooks* that stop an autonomous worker from confidently lying about completion. That is what this seed is known for.
+## Why this exists
 
-## Two layers
+Most agent projects start with plumbing:
 
-### Layer 1 — Methodology Handbook (the WHY)  ·  `HANDBOOK.md`
-Docs-first. The principles you run on, each stated so a reader can adopt it without our tooling. This is the thought-leadership.
+- model routing
+- tools
+- memory stores
+- orchestration graphs
+- queues
 
-### Layer 2 — Working Starter Kit (the HOW)  ·  *built on existing marketplaces, not greenfield*
-Packaged as a **Claude Code plugin** so "clone/install and you have it" works and others can contribute back. **Do not greenfield this** — build on and contribute to the existing serious ecosystem:
+Those matter, but they are not the hard part. The hard part is operational discipline:
 
-- **`prime-radiant-inc/iterative-development`** (Apache-2.0, Claude Code plugin) — its core principle is ours: *completion = behavior evidence at the correct seam, not marked-done*, plus paired-auditor parallel-adversarial review. Build on it.
-- **`superpowers`** — the companion plugin set it pairs with.
+- How does an agent prove that work is actually done?
+- Where does new knowledge live after the session ends?
+- What prevents a worker from silently lowering priority on inconvenient work?
+- How does a failure become a permanent guard instead of a repeated lesson?
+- How do multiple agents act with clean ownership and auditable handoffs?
 
-We publish **our differentiating pieces as plugins/contributions** on top of that ecosystem:
-- the **enforcement hooks** — a *done-guard* (block a "done" with no artifact evidence), a *reprioritize-guard* (workers may not demote queue priority — that's the orchestrator's call), *PR-hygiene* (one PR per unit, auto-merge-at-creation, evidence-requires-merged);
-- the **priority queue** — already public: **`laneq`** (lease-based, priority-ordered, multi-consumer);
-- the **regression-ratchet** convention;
-- the **knowledge-as-files** memory framework + index convention;
-- the **self-drive loop** (interval or self-paced) with a watchdog;
-- a **`CLAUDE.md` template**.
+Framework Seed names those rules and turns them into reusable methodology.
 
-Connect the existing public pieces (`laneq`, the public skills repo) rather than duplicate them.
+## The product shape
 
-## Naming proposals (pick one — owner's call)
+### 1. Proof of work
 
-| Name | Angle |
+Completion requires evidence at the real artifact, not a proxy.
+
+- A deployed feature is checked in the running product.
+- A sent message is verified in the sent record.
+- A merged change is verified after CI and deploy, not when the PR opens.
+- A bug fix includes the regression guard that would catch the same class next time.
+
+### 2. Knowledge as files
+
+Agent memory should compound across restarts and across workers.
+
+Framework Seed uses a file-backed knowledge model:
+
+- one fact per file
+- frontmatter for type and recall
+- a session-loaded index
+- links between related facts
+- clear routing between memory, skills, docs, state, and external pointers
+
+### 3. Enforcement hooks
+
+If a behavior must always happen, the harness should enforce it.
+
+Examples:
+
+- **done-guard**: block a completion claim with no artifact evidence
+- **reprioritize-guard**: workers may mark work blocked, but may not demote priority
+- **PR hygiene**: one unit of work, one PR, merged evidence before done
+- **regression-ratchet**: each incident adds a test, policy, alert, or guard
+
+### 4. Public building blocks
+
+Framework Seed is meant to connect public pieces rather than hide behind private infrastructure.
+
+Related public surfaces:
+
+- [Patrick Selamy on GitHub](https://github.com/pselamy)
+- [selamy.dev](https://selamy.dev)
+- [resume.selamy.dev](https://resume.selamy.dev)
+- [agent-skills](https://github.com/selamy-labs/agent-skills)
+- [laneq](https://github.com/selamy-labs/laneq)
+- [resume-as-code](https://github.com/pselamy/resume)
+
+## What this repo contains
+
+| File | Purpose |
 |---|---|
-| **Proof of Work** | the discipline core: nothing is done without proof at the artifact. (Reclaims the phrase for engineering rigor.) |
-| **Ledger** | every claim has an entry + evidence; the queue + memory are append-mostly ledgers. |
-| **Keel** | the unglamorous structural spine that keeps an autonomous fleet upright. |
-| **Plumb** | "true to plumb" — straight, verified, level; pairs with the false-done discipline. |
-| **Cairn** | knowledge-as-files: each fact a marked stone; the trail compounds. |
+| [`HANDBOOK.md`](./HANDBOOK.md) | The core operating principles for autonomous engineering agents |
+| `README.md` | The public product frame and entry point |
 
-## Guardrails (non-negotiable before publish)
-- **Scrub all internal specifics** — agent names, org names, product names, the real fleet, any secret. Privacy-scanner gate (same bar as the public skills repo) must pass.
-- **Never expose the billing/subscription/quota model.** Frame everything on the architecture and the discipline, never on how it is paid for.
-- **Gold-bar quality only.** Slop kills the credibility flywheel. Ship fewer, better principles.
-- **Pattern-only.** Ideas drawn from public/proven sources; never copy code from unlicensed/proprietary projects.
-- **Consumable & version-pinned, NOT a codegen-scaffold you fork.** Ship Layer 2 as an *installable, pinned* plugin/template built on a *maintained* upstream — not a generator that emits framework code which then drifts from the generator and locks to one vendor. ("A maintained framework people pin to" > "another stale scaffold." Keep it maintained or don't ship it.) Derived from the AgentStack scout.
+Layer 1 is the handbook: the method.
 
-## Verify (real artifact)
-This seed is *done* only when: a **public repo** exists with the handbook + an **installable plugin/template**, the **privacy scan is green**, and it **cleanly bootstraps a fresh orchestrated-fleet-with-knowledge-management setup using only public pieces**. This repo delivers **Layer 1 (the handbook)**; Layer 2 (an installable plugin/template built on prime-radiant/superpowers) is in progress.
+Layer 2 is an installable plugin/template built on existing serious ecosystems rather than a greenfield framework. The intended direction is to contribute enforcement hooks, templates, and conventions on top of maintained public agent tooling.
+
+## Design principles
+
+1. **Real artifact over proxy**  
+   Logs and green checks are not enough when the user-facing artifact is what matters.
+
+2. **Machine-enforced discipline**  
+   Critical rules belong in hooks, policies, and workflow gates, not only in prompts.
+
+3. **Knowledge compounds**  
+   Every durable learning gets routed to the right system of record.
+
+4. **Reproducible change**  
+   Infrastructure, repo settings, runtime config, and deployment state should be declarative and reviewable.
+
+5. **Clean identity**  
+   Each actor should act with scoped credentials and auditable ownership.
+
+## Non-goals
+
+Framework Seed does not publish private fleet details, internal agent names, billing mechanics, credentials, or proprietary implementation specifics.
+
+It is a public methodology repo: enough to teach the pattern, not enough to leak the private system it came from.
+
+## Status
+
+This repo currently publishes the handbook and product framing. The installable plugin/template layer is still in progress.
+
+Gold bar for the next version:
+
+- privacy scan passes
+- links are live
+- plugin/template installs cleanly from public sources
+- a fresh setup can demonstrate proof-of-work, knowledge-as-files, and done-guard behavior without private dependencies
