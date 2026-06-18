@@ -6,6 +6,8 @@ Most "agent framework" content sells plumbing: routing, tools, memory stores. Th
 
 This repo is the public methodology for that, plus (in progress) an installable kit to enforce it.
 
+Related public work: [selamy.dev](https://selamy.dev), Patrick's [GitHub profile](https://github.com/pselamy), and the public [agent-skills](https://github.com/selamy-labs/agent-skills) library.
+
 ## The core idea
 
 Three things keep an autonomous fleet trustworthy:
